@@ -1,0 +1,6 @@
+main.py
+node_modules
+10k.xlsx
+*.txt
+.env
+datos.csv
