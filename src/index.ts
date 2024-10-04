@@ -77,7 +77,7 @@ const Start = async () => {
             if (solved) {
                 console.log('✔️ The captcha has been solved');
             }
-            if (error) console.log(error);
+            if (error) console.log("Error");
             await page.click("button[class='v-btn v-btn--elevated v-theme--light bg-warning v-btn--density-default v-btn--size-x-large v-btn--variant-elevated mt-4']")
             await new Promise(r => setTimeout(r, 5000))
             const element = await page.$eval('.v-card', (e) => {
