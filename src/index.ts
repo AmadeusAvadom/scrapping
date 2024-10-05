@@ -66,16 +66,26 @@ const Start = async () => {
             await page.evaluate(() => {
                 window.scrollBy(0, window.innerHeight);
             });
-            const iframe = await page.$eval('iframe', (e) => {
+            const msg : string = await page.$eval("div[class='v-alert v-theme--light bg-warning v-alert--density-default v-alert--variant-flat alert-transparency']", (e) => { 
+                return e.querySelector(".v-alert__content").innerHTML
+            });
+            let matches= msg.match(/(\d+)/);
+            const intentos = matches[0];
+            if (intentos == '0') {
+                console.log("   Se ha excedido los intentos");
+                break;
+            }
+            
+            /*const iframe = await page.$eval('iframe', (e) => {
                 return e.src
             });
-            /*console.log("   Haciendo peticion a la API");
+            console.log("   Haciendo peticion a la API");
             await getCaptcha(iframe)
             console.log("\n");*/
 
             const { solved, error } = await page.solveRecaptchas();
             if (solved) {
-                console.log('✔️ The captcha has been solved');
+                console.log('   ✔️ The captcha has been solved');
             }
             if (error) console.log("Error");
             await page.click("button[class='v-btn v-btn--elevated v-theme--light bg-warning v-btn--density-default v-btn--size-x-large v-btn--variant-elevated mt-4']")
