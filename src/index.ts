@@ -98,7 +98,6 @@ const Start = async () => {
 
             let preFragmento = element.slice(662);
             let operador = preFragmento.split("<")[0];
-            console.log(operador);
 
             let fecha = preFragmento.split("<")[4].substring(2);
             CSV += `${WorkStrings[contVeces].t.toString()}, ${operador} \n`
